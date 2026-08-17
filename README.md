@@ -2,7 +2,7 @@
 
 ## Overview
 
-TypeScript based demo for the @richardmcquiston01/calendar-booking-system package
+TypeScript based demo for the @richardmcquiston01/calendar-booking-system package.
 
 ## Getting Started
 
