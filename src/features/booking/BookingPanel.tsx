@@ -21,14 +21,31 @@ function useDebouncedValue<T>(value: T, delayMs: number): T {
   return debounced;
 }
 
+interface SubmitResult {
+  ok: boolean;
+  message: string;
+}
+
 /**
  * The actual check-then-book form. Mounted fresh (via a `key` on the
  * exported `BookingPanel` below) each time the booking draft — or, absent a
  * draft, the shared calendar selection — changes, so its local state always
  * starts from the right prefill without needing to sync props into state
  * inside an effect.
+ *
+ * `submitResult` is owned by the non-remounting `BookingPanel` wrapper, not
+ * this component: a successful booking clears `bookingDraft` in the store,
+ * which changes this form's `key` and remounts it in the very same render
+ * that would otherwise show the success message — local state here would be
+ * discarded before it ever painted.
  */
-function BookingForm() {
+function BookingForm({
+  submitResult,
+  onSubmitResult,
+}: {
+  submitResult: SubmitResult | null;
+  onSubmitResult: (result: SubmitResult) => void;
+}) {
   const store = useCalendarStore();
   const { directory, snapshot, selectedCalendarId, bookingDraft, previewBooking, bookAppointment } = store;
 
@@ -47,7 +64,6 @@ function BookingForm() {
   );
   const [attendeeId, setAttendeeId] = useState<Uuid>(directory.students.priya);
   const [overrideConflicts, setOverrideConflicts] = useState(false);
-  const [submitResult, setSubmitResult] = useState<{ ok: boolean; message: string } | null>(null);
   // Stable throwaway id for the live preview — generated once per form mount.
   const [previewId] = useState<Uuid>(() => createId());
 
@@ -111,13 +127,13 @@ function BookingForm() {
     };
     const result = bookAppointment(input, overrideConflicts);
     if (result.ok) {
-      setSubmitResult({
+      onSubmitResult({
         ok: true,
         message: `Booked ${formatInstant(result.value.record.start, timeZone)} – ${formatInstant(result.value.record.end, timeZone)}.`,
       });
       setOverrideConflicts(false);
     } else {
-      setSubmitResult({ ok: false, message: result.error.message });
+      onSubmitResult({ ok: false, message: result.error.message });
     }
   }
 
@@ -234,13 +250,22 @@ function BookingForm() {
 /** Check-then-book form: ad-hoc or slot bookings against the frozen store contract. */
 export function BookingPanel() {
   const store = useCalendarStore();
-  const { bookingDraft, selectedCalendarId } = store;
+  const { bookingDraft, selectedCalendarId, lastAction } = store;
+  const [submitResult, setSubmitResult] = useState<SubmitResult | null>(null);
 
   // Remount the form (resetting all its local state from scratch) whenever
   // the draft, or absent a draft the shared calendar selection, changes.
+  // `submitResult` lives here instead, so it survives that remount.
   const formKey = bookingDraft
     ? `draft:${bookingDraft.calendarId}:${bookingDraft.start}:${bookingDraft.end}:${bookingDraft.slotId ?? ''}`
     : `selected:${selectedCalendarId}`;
 
-  return <BookingForm key={formKey} />;
+  // `resetToSeed()` sets `lastAction` back to null (it's the only action that
+  // does), so use that as the signal to drop a stale message left over from
+  // before the reset — otherwise a success message could outlive the very
+  // booking it describes. Derived during render, not an effect: no separate
+  // "was this reset" state to keep in sync.
+  const visibleResult = lastAction === null ? null : submitResult;
+
+  return <BookingForm key={formKey} submitResult={visibleResult} onSubmitResult={setSubmitResult} />;
 }
