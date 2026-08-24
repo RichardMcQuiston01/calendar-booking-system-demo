@@ -250,7 +250,7 @@ function BookingForm({
 /** Check-then-book form: ad-hoc or slot bookings against the frozen store contract. */
 export function BookingPanel() {
   const store = useCalendarStore();
-  const { bookingDraft, selectedCalendarId } = store;
+  const { bookingDraft, selectedCalendarId, lastAction } = store;
   const [submitResult, setSubmitResult] = useState<SubmitResult | null>(null);
 
   // Remount the form (resetting all its local state from scratch) whenever
@@ -260,5 +260,12 @@ export function BookingPanel() {
     ? `draft:${bookingDraft.calendarId}:${bookingDraft.start}:${bookingDraft.end}:${bookingDraft.slotId ?? ''}`
     : `selected:${selectedCalendarId}`;
 
-  return <BookingForm key={formKey} submitResult={submitResult} onSubmitResult={setSubmitResult} />;
+  // `resetToSeed()` sets `lastAction` back to null (it's the only action that
+  // does), so use that as the signal to drop a stale message left over from
+  // before the reset — otherwise a success message could outlive the very
+  // booking it describes. Derived during render, not an effect: no separate
+  // "was this reset" state to keep in sync.
+  const visibleResult = lastAction === null ? null : submitResult;
+
+  return <BookingForm key={formKey} submitResult={visibleResult} onSubmitResult={setSubmitResult} />;
 }
