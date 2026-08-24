@@ -4,6 +4,8 @@ import { BookingPanel } from './features/booking/BookingPanel';
 import { BookingsList } from './features/booking/BookingsList';
 import { InheritancePanel } from './features/inheritance/InheritancePanel';
 import { SnapshotInspector } from './features/inheritance/SnapshotInspector';
+import { DonateCard } from './components/DonateCard';
+import './components/donate-widget.css';
 import { useCalendarStore } from './store';
 import { Button } from './ui/Button';
 
@@ -46,6 +48,8 @@ function App() {
           <SnapshotInspector />
         </div>
       </main>
+
+      <DonateCard />
     </div>
   );
 }
