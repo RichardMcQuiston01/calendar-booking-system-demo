@@ -17,5 +17,8 @@ bun-debug.log*
 # Vercel
 .vercel
 
+# Claude Code agent worktrees (local scratch space, not project source)
+.claude/
+
 # OS
 .DS_Store
