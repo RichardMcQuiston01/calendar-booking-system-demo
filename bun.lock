@@ -5,7 +5,7 @@
     "": {
       "name": "calendar-booking-system-demo",
       "dependencies": {
-        "@richardmcquiston01/calendar-booking-system": "^0.1.0",
+        "@richardmcquiston01/calendar-booking-system": "^0.2.0",
         "react": "^19.2.8",
         "react-dom": "^19.2.8",
       },
@@ -98,7 +98,7 @@
 
     "@oxc-project/types": ["@oxc-project/types@0.146.0", "", {}, "sha512-XC0QsnnhVe7sLIWmYmdPw7x5P0h4W8vUU3Nv1ySgWXtvCz8NizoAEpGXA0sOYoJQV2Rl13LgURAHQ5cI5ILCSA=="],
 
-    "@richardmcquiston01/calendar-booking-system": ["@richardmcquiston01/calendar-booking-system@0.1.1", "", {}, "sha512-BgXnHZJm4utatjYwJxbXYtAKsTiuBbRFK/bm+4GqgfuhQSKUzNiFlHK0kykxxwbCsWdf4i1GWh5qADr7Z4SSGg=="],
+    "@richardmcquiston01/calendar-booking-system": ["@richardmcquiston01/calendar-booking-system@0.2.0", "", {}, "sha512-Gh0X6ORWp+DEbQW301we+NTxLsW646cJEVTR99zURIIfWyNuczgoWH+KVXCTbXwals7pc0VFeFaiCtaIhC94UA=="],
 
     "@rolldown/binding-android-arm-eabi": ["@rolldown/binding-android-arm-eabi@1.2.5", "", { "os": "android", "cpu": "arm" }, "sha512-DLe/i+l8ynIBY7XEQ191TeZvCoowIGa18R+dIV30GW7DiOtp74i/xX8hs8GUjW5ARV7VZuie3d6AumSmCwbeRA=="],
 

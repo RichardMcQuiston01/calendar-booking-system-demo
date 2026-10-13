@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Upgraded `@richardmcquiston01/calendar-booking-system` from `^0.1.0` to `^0.2.0`. The seeded scenario already used canonical UTC instants and plain weekly `byDay` rules, so it validates unchanged under the engine's stricter rules (canonical instants, recurrence caps, rule `startDate`). Typecheck, lint, tests, and build pass.
+
 ### Added
 
 - Initial demo release: a Vite + React + TypeScript single-page app demonstrating `@richardmcquiston01/calendar-booking-system`, seeded with a "Riverside Tutoring Center" scenario (a center calendar, two teachers on different inheritance modes across three time zones, students, recurring events, a capacity-limited group slot, and seed bookings).

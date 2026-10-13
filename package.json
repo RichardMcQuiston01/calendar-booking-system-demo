@@ -12,7 +12,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@richardmcquiston01/calendar-booking-system": "^0.1.0",
+    "@richardmcquiston01/calendar-booking-system": "^0.2.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },
