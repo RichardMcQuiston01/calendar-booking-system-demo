@@ -4,6 +4,7 @@
 
 ### Changed
 
+- Upgraded `@richardmcquiston01/calendar-booking-system` from `^0.2.0` to `^0.3.0`. 0.3.0 is an internal performance release (one shared snapshot index per call, no repeated validation) with no behavior or public signature change, so no demo code changed. Typecheck, lint, tests, and build pass.
 - Upgraded `@richardmcquiston01/calendar-booking-system` from `^0.1.0` to `^0.2.0`. The seeded scenario already used canonical UTC instants and plain weekly `byDay` rules, so it validates unchanged under the engine's stricter rules (canonical instants, recurrence caps, rule `startDate`). Typecheck, lint, tests, and build pass.
 
 ### Added
