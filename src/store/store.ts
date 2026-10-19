@@ -201,6 +201,45 @@ export function toggleCenterBlockingEvent(active: boolean): void {
   }
 }
 
+/** The slice of store state worth surviving a page reload. */
+export interface PersistedCalendarState {
+  snapshot: CalendarSnapshot;
+  directory: DemoDirectory;
+  selectedCalendarId: Uuid;
+  isBlockingEventActive: boolean;
+  blockingEventTemplate: EventInput;
+}
+
+export function getPersistedState(): PersistedCalendarState {
+  return {
+    snapshot: state.snapshot,
+    directory: state.directory,
+    selectedCalendarId: state.selectedCalendarId,
+    isBlockingEventActive: state.isBlockingEventActive,
+    blockingEventTemplate,
+  };
+}
+
+/** Replace the demo state with a previously persisted one (UI-only state resets to defaults). */
+export function restoreState(persisted: PersistedCalendarState): void {
+  blockingEventTemplate = persisted.blockingEventTemplate;
+  state = {
+    snapshot: persisted.snapshot,
+    directory: persisted.directory,
+    selectedCalendarId: persisted.selectedCalendarId,
+    selectedRange: defaultRangeFor(persisted.directory, persisted.directory.teachers.ada.timeZone),
+    bookingDraft: null,
+    isBlockingEventActive: persisted.isBlockingEventActive,
+    lastAction: null,
+  };
+  listeners.forEach((listener) => listener());
+}
+
+/** Subscribe to every state change, for non-React code (persistence, logging). */
+export function subscribeToStore(listener: () => void): () => void {
+  return subscribe(listener);
+}
+
 export function resetToSeed(): void {
   state = createInitialState();
   listeners.forEach((listener) => listener());
