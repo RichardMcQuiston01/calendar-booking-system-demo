@@ -1,0 +1,9 @@
+services:
+  demo:
+    build: .
+    image: calendar-booking-system-demo
+    ports:
+      - "8080:8080"
+    environment:
+      # Optional: POST error log entries (batched JSON) to this https:// URL.
+      ERROR_LOG_WEBHOOK_URL: "${ERROR_LOG_WEBHOOK_URL:-}"

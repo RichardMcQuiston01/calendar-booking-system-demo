@@ -36,6 +36,16 @@ bun run lint        # eslint
 bun run test        # vitest
 ```
 
+### Docker
+
+```sh
+docker build -t calendar-booking-system-demo .
+docker run --rm -p 8080:8080 calendar-booking-system-demo   # http://localhost:8080
+# or: docker compose up --build
+```
+
+Set `ERROR_LOG_WEBHOOK_URL` (an `https://` URL) to also POST error log entries to a webhook. Calendar state is saved in the browser's `localStorage` through `@richardmcquiston01/storage-adapters`; errors are logged through `@richardmcquiston01/error-log-adapter` (console, `localStorage` key `calendar-demo:error-log`, optional webhook).
+
 ### Examples
 
 Open the dev server and:

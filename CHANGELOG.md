@@ -9,6 +9,9 @@
 
 ### Added
 
+- Docker image (`Dockerfile`, `docker-compose.yml`): multi-stage build (bun → unprivileged nginx) serving the SPA on port 8080 with a `/healthz` endpoint. Optional `ERROR_LOG_WEBHOOK_URL` is injected at container start via `/config.js`.
+- `@richardmcquiston01/storage-adapters`: the demo's calendar state is restored on load and autosaved to `localStorage` (in-memory fallback). A saved demo week that has passed is discarded and reseeded; "Reset demo" overwrites the saved state.
+- `@richardmcquiston01/error-log-adapter`: storage failures, failed cancel/toggle actions and uncaught browser errors go to the console and a capped `localStorage` log (`calendar-demo:error-log`), plus a batched webhook when configured.
 - Initial demo release: a Vite + React + TypeScript single-page app demonstrating `@richardmcquiston01/calendar-booking-system`, seeded with a "Riverside Tutoring Center" scenario (a center calendar, two teachers on different inheritance modes across three time zones, students, recurring events, a capacity-limited group slot, and seed bookings).
 - Availability and calendar-view panels backed directly by the engine's `queryAvailability`/`queryView`.
 - A check-then-book booking flow with live conflict preview, a conflict-override toggle, and cancellation.

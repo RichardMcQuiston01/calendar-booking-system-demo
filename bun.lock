@@ -6,6 +6,8 @@
       "name": "calendar-booking-system-demo",
       "dependencies": {
         "@richardmcquiston01/calendar-booking-system": "^0.3.0",
+        "@richardmcquiston01/error-log-adapter": "^0.14.0",
+        "@richardmcquiston01/storage-adapters": "^0.16.0",
         "react": "^19.2.8",
         "react-dom": "^19.2.8",
       },
@@ -99,6 +101,10 @@
     "@oxc-project/types": ["@oxc-project/types@0.146.0", "", {}, "sha512-XC0QsnnhVe7sLIWmYmdPw7x5P0h4W8vUU3Nv1ySgWXtvCz8NizoAEpGXA0sOYoJQV2Rl13LgURAHQ5cI5ILCSA=="],
 
     "@richardmcquiston01/calendar-booking-system": ["@richardmcquiston01/calendar-booking-system@0.3.0", "", {}, "sha512-yijPmsDXmtfb8IVc3U+e5OIRNFbYUBsa53by3A0zE7Vfzhp75siCX7AlSbmHq4UcowJyZYHA7XifJ4b15lP0Ug=="],
+
+    "@richardmcquiston01/error-log-adapter": ["@richardmcquiston01/error-log-adapter@0.14.0", "", {}, "sha512-kRUFu9PB83EsDo+EeCL/BC1QSmN3NOBKsh5l9NP82ARtCyumsv0Ne7RLgDHbhT+6m4Nc6NLnap+zyveMxcq/sA=="],
+
+    "@richardmcquiston01/storage-adapters": ["@richardmcquiston01/storage-adapters@0.16.0", "", { "peerDependencies": { "react": ">=18" }, "optionalPeers": ["react"] }, "sha512-+bfR0zSaC0Sr7jaQpJtfawDSGFOL+3CACtKIZhvHJUldJgVfJupD9tVoz0I/bVioUnjhbYauUy7w5yjbipv9dw=="],
 
     "@rolldown/binding-android-arm-eabi": ["@rolldown/binding-android-arm-eabi@1.2.5", "", { "os": "android", "cpu": "arm" }, "sha512-DLe/i+l8ynIBY7XEQ191TeZvCoowIGa18R+dIV30GW7DiOtp74i/xX8hs8GUjW5ARV7VZuie3d6AumSmCwbeRA=="],
 
