@@ -9,6 +9,7 @@
 
 ### Added
 
+- GitHub Actions workflow (`.github/workflows/docker-publish.yml`) that builds the image for linux/amd64 and linux/arm64 and publishes it to `ghcr.io/richardmcquiston01/calendar-booking-system-demo` on pushes to `main` (`latest`, `sha-*`) and `v*` tags (semver). Pull requests build without pushing.
 - Docker image (`Dockerfile`, `docker-compose.yml`): multi-stage build (bun → unprivileged nginx) serving the SPA on port 8080 with a `/healthz` endpoint. Optional `ERROR_LOG_WEBHOOK_URL` is injected at container start via `/config.js`.
 - `@richardmcquiston01/storage-adapters`: the demo's calendar state is restored on load and autosaved to `localStorage` (in-memory fallback). A saved demo week that has passed is discarded and reseeded; "Reset demo" overwrites the saved state.
 - `@richardmcquiston01/error-log-adapter`: storage failures, failed cancel/toggle actions and uncaught browser errors go to the console and a capped `localStorage` log (`calendar-demo:error-log`), plus a batched webhook when configured.
