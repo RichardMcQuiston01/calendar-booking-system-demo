@@ -51,7 +51,7 @@ If this app, code, or repository has helped you or someone you know, please cons
 
 [**Donate via PayPal**](https://www.paypal.com/ncp/payment/JN2JW8XA5HJR6), or scan:
 
-[![Donate via PayPal](./donate.png)](https://www.paypal.com/ncp/payment/JN2JW8XA5HJR6)
+<a href="https://www.paypal.com/ncp/payment/JN2JW8XA5HJR6"><img src="./donate.png" alt="Donate via PayPal" width="180"></a>
 
 ## License
 
